@@ -3,7 +3,7 @@ name = "libero"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = "==3.8.*"
+requires-python = "==3.10.*"
 dependencies = [
     "bddl==1.0.1",
     "cloudpickle==2.1.0",
@@ -25,5 +25,17 @@ dependencies = [
     "wandb==0.13.1",
 ]
 
+[tool.uv]
+environments = [
+  "sys_platform == 'linux' and platform_machine == 'x86_64'",
+]
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu113" }
+torchvision = { index = "pytorch-cu113" }
+torchaudio = { index = "pytorch-cu113" }
+
 [[tool.uv.index]]
+name = "pytorch-cu113"
 url = "https://download.pytorch.org/whl/cu113"
+explicit = true
