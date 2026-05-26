@@ -1,0 +1,2 @@
+recursive-include libero *.yaml *.xml *.stl *.obj *.mtl *.msh *.png *.jpg *.bddl *.init *.pruned_init *.txt *.zip
+recursive-include templates *.py *.xml

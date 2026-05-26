@@ -1,9 +1,20 @@
 [project]
 name = "libero"
 version = "0.1.0"
-description = "Add your description here"
-readme = "README.md"
+description = "LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning"
+readme = { file = "README.md", content-type = "text/markdown" }
 requires-python = "==3.10.*"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [
+    { name = "Bo Liu", email = "bliu@cs.utexas.edu" },
+    { name = "Yifeng Zhu", email = "yifengz@cs.utexas.edu" },
+    { name = "Chongkai Gao" },
+    { name = "Yihao Feng" },
+    { name = "Qiang Liu" },
+    { name = "Yuke Zhu" },
+    { name = "Peter Stone" },
+]
 dependencies = [
     "bddl==1.0.1",
     "cloudpickle==2.1.0",
@@ -25,7 +36,40 @@ dependencies = [
     "wandb==0.13.1",
 ]
 
+[project.urls]
+Homepage = "https://libero-project.github.io"
+Documentation = "https://lifelong-robot-learning.github.io/LIBERO/"
+Repository = "https://github.com/Lifelong-Robot-Learning/LIBERO"
+Paper = "https://arxiv.org/pdf/2306.03310.pdf"
+
+[project.scripts]
+"lifelong.main" = "libero.lifelong.main:main"
+"lifelong.eval" = "libero.lifelong.evaluate:main"
+"libero.config_copy" = "scripts.config_copy:main"
+"libero.create_template" = "scripts.create_template:main"
+
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["libero*", "scripts*", "templates*"]
+
+[tool.setuptools.package-data]
+libero = [
+    "configs/**/*.yaml",
+    "libero/assets/**/*",
+    "libero/bddl_files/**/*.bddl",
+    "libero/init_files/**/*",
+]
+templates = ["*.py", "*.xml"]
+
 [tool.uv]
+package = true
 environments = [
   "sys_platform == 'linux' and platform_machine == 'x86_64'",
 ]
